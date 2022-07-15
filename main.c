@@ -1,5 +1,6 @@
 #define MAIN
 
+#include <time.h>
 #include "header.h"
 
 #define OP_STOP     0xff
@@ -533,16 +534,12 @@ void initIndexes() {
   addIndex("{B},Y",             "A8 [L]");
   addIndex("{W},Y",             "A9 [W]");
   addIndex("D,Y",               "AB");
-  addIndex("{B},PC",            "8C [L]");
-  addIndex("{W},PC",            "8D [W]");
   addIndex("[,Y++]",            "B1");
   addIndex("[,--Y]",            "B3");
   addIndex("[,Y]",              "B4");
   addIndex("[{B},Y]",           "B8 [L]");
   addIndex("[{W},Y]",           "B9 [W]");
   addIndex("[D,Y]",             "BB");
-  addIndex("[{B},PC]",          "9C [L]");
-  addIndex("[{W},PC]",          "9D [W]");
 
   addIndex("{5},U",             "4[5]");
   addIndex(",U++",              "C1");
@@ -553,16 +550,12 @@ void initIndexes() {
   addIndex("{B},U",             "C8 [L]");
   addIndex("{W},U",             "C9 [W]");
   addIndex("D,U",               "CB");
-  addIndex("{B},PC",            "8C [L]");
-  addIndex("{W},PC",            "8D [W]");
   addIndex("[,U++]",            "D1");
   addIndex("[,--U]",            "D3");
   addIndex("[,U]",              "D4");
   addIndex("[{B},U]",           "D8 [L]");
   addIndex("[{W},U]",           "D9 [W]");
   addIndex("[D,U]",             "DB");
-  addIndex("[{B},PC]",          "9C [L]");
-  addIndex("[{W},PC]",          "9D [W]");
 
   addIndex("{5},S",             "6[5]");
   addIndex(",S++",              "E1");
@@ -573,16 +566,12 @@ void initIndexes() {
   addIndex("{B},S",             "E8 [L]");
   addIndex("{W},S",             "E9 [W]");
   addIndex("D,S",               "EB");
-  addIndex("{B},PC",            "8C [L]");
-  addIndex("{W},PC",            "8D [W]");
   addIndex("[,S++]",            "F1");
   addIndex("[,--S]",            "F3");
   addIndex("[,S]",              "F4");
   addIndex("[{B},S]",           "F8 [L]");
   addIndex("[{W},S]",           "F9 [W]");
   addIndex("[D,S]",             "FB");
-  addIndex("[{B},PC]",          "9C [L]");
-  addIndex("[{W},PC]",          "9D [W]");
   }
 
 char* trim(char* buffer) {
@@ -839,7 +828,35 @@ char* evaluate(char* expr, word* ret) {
       isHex = 'Y';
       expr++;
       }
-    if (*expr == '$') {
+    if (strncmp(expr, "[month]", 7) == 0) {
+      value = buildMonth;
+      expr += 7;
+      }
+    else if (strncmp(expr, "[day]", 5) == 0) {
+      value = buildDay;
+      expr += 5;
+      }
+    else if (strncmp(expr, "[year]", 6) == 0) {
+      value = buildYear;
+      expr += 6;
+      }
+    else if (strncmp(expr, "[hour]", 6) == 0) {
+      value = buildHour;
+      expr += 6;
+      }
+    else if (strncmp(expr, "[minute]", 8) == 0) {
+      value = buildMinute;
+      expr += 8;
+      }
+    else if (strncmp(expr, "[second]", 8) == 0) {
+      value = buildSecond;
+      expr += 8;
+      }
+    else if (strncmp(expr, "[build]", 7) == 0) {
+      value = buildNumber;
+      expr += 7;
+      }
+    else if (*expr == '$') {
       value = address;
       expr++;
       }
@@ -1485,6 +1502,52 @@ int assemblyPass(char* sourceName) {
     strcpy(sourceLine, line);
     if (strncmp(line,".list",5) == 0) showList = -1;
     if (strncmp(line,".sym",4) == 0) showSymbols = -1;
+    if (strncmp(line,".link ",6) == 0) {
+      if (pass == 2) {
+        fprintf(outFile,"%s\n",line+6);
+        }
+      }
+    if (strncmp(line,".sym",4) == 0) showSymbols = -1;
+    if (strncmp(line,".align word", 11) == 0) {
+      if (outCount != 0) writeOutput();
+      address = (address + 1) & 0xfffe;
+      outAddress = address;
+      }
+    if (strncmp(line,".align dword", 12) == 0) {
+      if (outCount != 0) writeOutput();
+      address = (address + 3) & 0xfffc;
+      outAddress = address;
+      }
+    if (strncmp(line,".align qword", 12) == 0) {
+      if (outCount != 0) writeOutput();
+      address = (address + 7) & 0xfff8;
+      outAddress = address;
+      }
+    if (strncmp(line,".align para", 11) == 0) {
+      if (outCount != 0) writeOutput();
+      address = (address + 15) & 0xfff0;
+      outAddress = address;
+      }
+    if (strncmp(line,".align 32", 9) == 0) {
+      if (outCount != 0) writeOutput();
+      address = (address + 31) & 0xffe0;
+      outAddress = address;
+      }
+    if (strncmp(line,".align 64", 9) == 0) {
+      if (outCount != 0) writeOutput();
+      address = (address + 63) & 0xffc0;
+      outAddress = address;
+      }
+    if (strncmp(line,".align 128", 10) == 0) {
+      if (outCount != 0) writeOutput();
+      address = (address + 127) & 0xff80;
+      outAddress = address;
+      }
+    if (strncmp(line,".align page", 11) == 0) {
+      if (outCount != 0) writeOutput();
+      address = (address + 255) & 0xff00;
+      outAddress = address;
+      }
     if (line[0] == '.') strcpy(line,"");
     pchar = strchr(line, ';');
     if (pchar != NULL) {
@@ -1627,10 +1690,10 @@ int assemblyPass(char* sourceName) {
         else if (strncasecmp(pline,"df",2) == 0) {
           pline = nextWord(pline);
           ftoi.f = atof(pline);
-          output(ftoi.i & 0xff);
-          output((ftoi.i >> 8) & 0xff);
-          output((ftoi.i >> 16) & 0xff);
           output((ftoi.i >> 24) & 0xff);
+          output((ftoi.i >> 16) & 0xff);
+          output((ftoi.i >> 8) & 0xff);
+          output(ftoi.i & 0xff);
           }
         else if (strncasecmp(pline,"end",3) == 0) {
           if (outCount != 0) writeOutput();
@@ -1701,6 +1764,8 @@ void assembleFile(char* sourceName) {
   int   i;
   char *pchar;
   char buffer[1024];
+  char tmp[1024];
+  FILE *buildFile;
   strcpy(baseName, sourceName);
   pchar = strchr(baseName,'.');
   if (pchar != NULL) *pchar = 0;
@@ -1716,6 +1781,22 @@ void assembleFile(char* sourceName) {
   numReferences = 0;
   numPublics = 0;
   startAddress = 0xffff;
+
+  strcpy(tmp, baseName);
+  strcat(tmp,".build");
+  buildFile = fopen(tmp, "r");
+  if (buildFile == NULL) {
+    buildNumber = 1;
+    }
+  else {
+    fgets(buffer, 32, buildFile);
+    buildNumber = atoi(buffer) + 1;
+    fclose(buildFile);
+    }
+  buildFile = fopen(tmp,"w");
+  fprintf(buildFile,"%d\n",buildNumber);
+  fclose(buildFile);
+
   pass = 1;
   if (assemblyPass(sourceName) != 0) {
     printf("Errors encountered. Assembly aborted\n");
@@ -1780,6 +1861,8 @@ void assembleFile(char* sourceName) {
 
 int main(int argc, char **argv) {
   int i;
+  time_t tv;
+  struct tm dt;
   printf("Asm/09 1.0 by Michael H. Riley\n\n");
   initOpcodes();
   initIndexes();
@@ -1787,6 +1870,14 @@ int main(int argc, char **argv) {
   showSymbols = 0;
   createListFile = 0;
   numSourceFiles = 0;
+  tv = time(NULL);
+  localtime_r(&tv, &dt);
+  buildMonth = dt.tm_mon + 1;
+  buildDay = dt.tm_mday;
+  buildYear = dt.tm_year + 1900;
+  buildHour = dt.tm_hour;
+  buildMinute = dt.tm_min;
+  buildSecond = dt.tm_sec;
   for (i=1; i<argc; i++) {
     if (strcmp(argv[i],"-l") == 0) showList = -1;
     else if (strcmp(argv[i],"-L") == 0) createListFile = -1;

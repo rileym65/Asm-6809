@@ -14,6 +14,13 @@
 typedef unsigned char byte;
 typedef unsigned short word;
 
+LINK int     buildMonth;
+LINK int     buildDay;
+LINK int     buildYear;
+LINK int     buildHour;
+LINK int     buildMinute;
+LINK int     buildSecond;
+LINK int     buildNumber;
 LINK int    *externals;
 LINK word    fixups[10000];
 LINK char    fixupTypes[10000];
