@@ -789,6 +789,7 @@ char* evaluate(char* expr, word* ret) {
   *ret = 0;
   evalErrors = 0;
   usedExternal = -1;
+  usedLocal = -1;
   extType = 'W';
   osp = 0;
   nsp = 0;
@@ -1268,7 +1269,7 @@ void translateInstruction(char* trans) {
       if (usedExternal >= 0 && pass == 2) {
         if (pass == 2) fprintf(outFile,"?%s %04x\n",labelNames[externals[usedExternal]],address);
         }
-      if (usedLocal != 0 && pass == 2) {
+      if (usedLocal >= 0 && pass == 2) {
         fixups[numFixups] = address;
         fixupTypes[numFixups] = 'W';
         fixupLowOffset[numFixups] = 0;
@@ -1608,6 +1609,7 @@ int assemblyPass(char* sourceName) {
             printf("***ERROR: ENDP encountered outside PROC\n");
             errors++;
             }
+          inProc = 0;
           if (outCount != 0) writeOutput();
           if (pass == 2) {
             for (i=0; i<numFixups; i++) {
