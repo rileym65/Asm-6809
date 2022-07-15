@@ -46,44 +46,44 @@ void initOpcodes() {
   addOpcode("ADCA #{B}",         "89 [L]");
   addOpcode("ADCA <{B}",         "99 [L]");
   addOpcode("ADCA {I}",          "A9 [I]");
-  addOpcode("ADCA {W}",          "B9 [H] [L]");
-  addOpcode("ADCA [{W}]",        "A9 9F [H] [L]");
+  addOpcode("ADCA {W}",          "B9 [W]");
+  addOpcode("ADCA [{W}]",        "A9 9F [W]");
 
   addOpcode("ADCB #{B}",         "C9 [L]");
   addOpcode("ADCB <{B}",         "D9 [L]");
   addOpcode("ADCB {I}",          "E9 [I]");
-  addOpcode("ADCB {W}",          "F9 [H] [L]");
-  addOpcode("ADCB [{W}]",        "E9 9F [H] [L]");
+  addOpcode("ADCB {W}",          "F9 [W]");
+  addOpcode("ADCB [{W}]",        "E9 9F [W]");
 
   addOpcode("ADDA #{B}",         "8B [L]");
   addOpcode("ADDA <{B}",         "9B [L]");
   addOpcode("ADDA {I}",          "AB [I]");
-  addOpcode("ADDA {W}",          "BB [H] [L]");
-  addOpcode("ADDA [{W}]",        "AB 9F [H] [L]");
+  addOpcode("ADDA {W}",          "BB [W]");
+  addOpcode("ADDA [{W}]",        "AB 9F [W]");
 
   addOpcode("ADDB #{B}",         "CB [L]");
   addOpcode("ADDB <{B}",         "DB [L]");
   addOpcode("ADDB {I}",          "EB [I]");
-  addOpcode("ADDB {W}",          "FB [H] [L]");
-  addOpcode("ADDB [{W}]",        "EB 9F [H] [L]");
+  addOpcode("ADDB {W}",          "FB [W]");
+  addOpcode("ADDB [{W}]",        "EB 9F [W]");
 
-  addOpcode("ADDD #{W}",         "C3 [H] [L]");
+  addOpcode("ADDD #{W}",         "C3 [W]");
   addOpcode("ADDD <{B}",         "D3 [L]");
   addOpcode("ADDD {I}",          "E3 [I]");
-  addOpcode("ADDD {W}",          "F3 [H] [L]");
-  addOpcode("ADDD [{W}]",        "E3 9F [H] [L]");
+  addOpcode("ADDD {W}",          "F3 [W]");
+  addOpcode("ADDD [{W}]",        "E3 9F [W]");
 
   addOpcode("ANDA #{B}",         "84 [L]");
   addOpcode("ANDA <{B}",         "94 [L]");
   addOpcode("ANDA {I}",          "A4 [I]");
-  addOpcode("ANDA {W}",          "B4 [H] [L]");
-  addOpcode("ANDA [{W}]",        "A4 9F [H] [L]");
+  addOpcode("ANDA {W}",          "B4 [W]");
+  addOpcode("ANDA [{W}]",        "A4 9F [W]");
 
   addOpcode("ANDB #{B}",         "C4 [L]");
   addOpcode("ANDB <{B}",         "D4 [L]");
   addOpcode("ANDB {I}",          "E4 [I]");
-  addOpcode("ANDB {W}",          "F4 [H] [L]");
-  addOpcode("ANDB [{W}]",        "E4 9F [H] [L]");
+  addOpcode("ANDB {W}",          "F4 [W]");
+  addOpcode("ANDB [{W}]",        "E4 9F [W]");
 
   addOpcode("ANDCC #{B}",        "1C [L]");
 
@@ -93,8 +93,8 @@ void initOpcodes() {
 
   addOpcode("ASL <{B}",          "08 [L]");
   addOpcode("ASL {I}",           "68 [I]");
-  addOpcode("ASL {W}",           "78 [H] [L]");
-  addOpcode("ASL [{W}]",         "68 9F [H] [L]");
+  addOpcode("ASL {W}",           "78 [W]");
+  addOpcode("ASL [{W}]",         "68 9F [W]");
 
   addOpcode("ASRA",              "47");
 
@@ -102,20 +102,20 @@ void initOpcodes() {
 
   addOpcode("ASR <{B}",          "07 [L]");
   addOpcode("ASR {I}",           "67 [I]");
-  addOpcode("ASR {W}",           "77 [H] [L]");
-  addOpcode("ASR [{W}]",         "67 9F [H] [L]");
+  addOpcode("ASR {W}",           "77 [W]");
+  addOpcode("ASR [{W}]",         "67 9F [W]");
 
   addOpcode("BITA #{B}",         "85 [L]");
   addOpcode("BITA <{B}",         "95 [L]");
   addOpcode("BITA {I}",          "A5 [I]");
-  addOpcode("BITA {W}",          "B5 [H] [L]");
-  addOpcode("BITA [{W}]",        "A5 9F [H] [L]");
+  addOpcode("BITA {W}",          "B5 [W]");
+  addOpcode("BITA [{W}]",        "A5 9F [W]");
 
   addOpcode("BITB #{B}",         "C5 [L]");
   addOpcode("BITB <{B}",         "D5 [L]");
   addOpcode("BITB {I}",          "E5 [I]");
-  addOpcode("BITB {W}",          "F5 [H] [L]");
-  addOpcode("BITB [{W}]",        "E5 9F [H] [L]");
+  addOpcode("BITB {W}",          "F5 [W]");
+  addOpcode("BITB [{W}]",        "E5 9F [W]");
 
   addOpcode("CLRA",              "4F");
 
@@ -123,50 +123,50 @@ void initOpcodes() {
 
   addOpcode("CLR <{B}",          "0F [L]");
   addOpcode("CLR {I}",           "6F [I]");
-  addOpcode("CLR {W}",           "7F [H] [L]");
-  addOpcode("CLR [{W}]",         "6F 9F [H] [L]");
+  addOpcode("CLR {W}",           "7F [W]");
+  addOpcode("CLR [{W}]",         "6F 9F [W]");
 
   addOpcode("CMPA #{B}",         "81 [L]");
   addOpcode("CMPA <{B}",         "91 [L]");
   addOpcode("CMPA {I}",          "A1 [I]");
-  addOpcode("CMPA {W}",          "B1 [H] [L]");
-  addOpcode("CMPA [{W}]",        "A1 9F [H] [L]");
+  addOpcode("CMPA {W}",          "B1 [W]");
+  addOpcode("CMPA [{W}]",        "A1 9F [W]");
 
   addOpcode("CMPB #{B}",         "C1 [L]");
   addOpcode("CMPB <{B}",         "D1 [L]");
   addOpcode("CMPB {I}",          "E1 [I]");
-  addOpcode("CMPB {W}",          "F1 [H] [L]");
-  addOpcode("CMPB [{W}]",        "E1 9F [H] [L]");
+  addOpcode("CMPB {W}",          "F1 [W]");
+  addOpcode("CMPB [{W}]",        "E1 9F [W]");
 
-  addOpcode("CMPD #{W}",         "10 83 [H] [L]");
+  addOpcode("CMPD #{W}",         "10 83 [W]");
   addOpcode("CMPD <{B}",         "10 93 [L]");
   addOpcode("CMPD {I}",          "10 A3 [I]");
-  addOpcode("CMPD {W}",          "10 B3 [H] [L]");
-  addOpcode("CMPD [{W}]",        "10 A3 9F [H] [L]");
+  addOpcode("CMPD {W}",          "10 B3 [W]");
+  addOpcode("CMPD [{W}]",        "10 A3 9F [W]");
 
-  addOpcode("CMPS #{W}",         "11 8C [H] [L]");
+  addOpcode("CMPS #{W}",         "11 8C [W]");
   addOpcode("CMPS <{B}",         "11 9C [L]");
   addOpcode("CMPS {I}",          "11 AC [I]");
-  addOpcode("CMPS {W}",          "11 BC [H] [L]");
-  addOpcode("CMPS [{W}]",        "11 AC 9F [H] [L]");
+  addOpcode("CMPS {W}",          "11 BC [W]");
+  addOpcode("CMPS [{W}]",        "11 AC 9F [W]");
 
-  addOpcode("CMPU #{W}",         "11 83 [H] [L]");
+  addOpcode("CMPU #{W}",         "11 83 [W]");
   addOpcode("CMPU <{B}",         "11 93 [L]");
   addOpcode("CMPU {I}",          "11 A3 [I]");
-  addOpcode("CMPU {W}",          "11 B3 [H] [L]");
-  addOpcode("CMPU [{W}]",        "11 A3 9F [H] [L]");
+  addOpcode("CMPU {W}",          "11 B3 [W]");
+  addOpcode("CMPU [{W}]",        "11 A3 9F [W]");
 
-  addOpcode("CMPX #{W}",         "8C [H] [L]");
+  addOpcode("CMPX #{W}",         "8C [W]");
   addOpcode("CMPX <{B}",         "9C [L]");
   addOpcode("CMPX {I}",          "AC [I]");
-  addOpcode("CMPX {W}",          "BC [H] [L]");
-  addOpcode("CMPX [{W}]",        "AC 9F [H] [L]");
+  addOpcode("CMPX {W}",          "BC [W]");
+  addOpcode("CMPX [{W}]",        "AC 9F [W]");
 
-  addOpcode("CMPY #{W}",         "10 8C [H] [L]");
+  addOpcode("CMPY #{W}",         "10 8C [W]");
   addOpcode("CMPY <{B}",         "10 9C [L]");
   addOpcode("CMPY {I}",          "10 AC [I]");
-  addOpcode("CMPY {W}",          "10 BC [H] [L]");
-  addOpcode("CMPY [{W}]",        "10 AC 9F [H] [L]");
+  addOpcode("CMPY {W}",          "10 BC [W]");
+  addOpcode("CMPY [{W}]",        "10 AC 9F [W]");
 
   addOpcode("COMA",              "43");
 
@@ -174,8 +174,8 @@ void initOpcodes() {
 
   addOpcode("COM <{B}",          "03 [L]");
   addOpcode("COM {I}",           "63 [I]");
-  addOpcode("COM {W}",           "73 [H] [L]");
-  addOpcode("COM [{W}]",         "63 9F [H] [L]");
+  addOpcode("COM {W}",           "73 [W]");
+  addOpcode("COM [{W}]",         "63 9F [W]");
 
   addOpcode("CWAI #{B}",         "3C [L]");
 
@@ -187,20 +187,20 @@ void initOpcodes() {
 
   addOpcode("DEC <{B}",          "0A [L]");
   addOpcode("DEC {I}",           "6A [I]");
-  addOpcode("DEC {W}",           "7A [H] [L]");
-  addOpcode("DEC [{W}]",         "6A 9F [H] [L]");
+  addOpcode("DEC {W}",           "7A [W]");
+  addOpcode("DEC [{W}]",         "6A 9F [W]");
 
   addOpcode("EORA #{B}",         "88 [L]");
   addOpcode("EORA <{B}",         "98 [L]");
   addOpcode("EORA {I}",          "A8 [I]");
-  addOpcode("EORA {W}",          "B8 [H] [L]");
-  addOpcode("EORA [{W}]",        "A8 9F [H] [L]");
+  addOpcode("EORA {W}",          "B8 [W]");
+  addOpcode("EORA [{W}]",        "A8 9F [W]");
 
   addOpcode("EORB #{B}",         "C8 [L]");
   addOpcode("EORB <{B}",         "D8 [L]");
   addOpcode("EORB {I}",          "E8 [I]");
-  addOpcode("EORB {W}",          "F8 [H] [L]");
-  addOpcode("EORB [{W}]",        "E8 9F [H] [L]");
+  addOpcode("EORB {W}",          "F8 [W]");
+  addOpcode("EORB [{W}]",        "E8 9F [W]");
 
   addOpcode("EXG {RP}",          "1E [L]");
 
@@ -210,60 +210,60 @@ void initOpcodes() {
 
   addOpcode("INC <{B}",          "0C [L]");
   addOpcode("INC {I}",           "6C [I]");
-  addOpcode("INC {W}",           "7C [H] [L]");
-  addOpcode("INC [{W}]",         "6C 9F [H] [L]");
+  addOpcode("INC {W}",           "7C [W]");
+  addOpcode("INC [{W}]",         "6C 9F [W]");
 
   addOpcode("JMP <{B}",          "0E [L]");
   addOpcode("JMP {I}",           "6E [I]");
-  addOpcode("JMP {W}",           "7E [H] [L]");
-  addOpcode("JMP [{W}]",         "6E 9F [H] [L]");
+  addOpcode("JMP {W}",           "7E [W]");
+  addOpcode("JMP [{W}]",         "6E 9F [W]");
 
   addOpcode("JSR <{B}",          "9D [L]");
   addOpcode("JSR {I}",           "AD [I]");
-  addOpcode("JSR {W}",           "BD [H] [L]");
-  addOpcode("JSR [{W}]",         "AD 9F [H] [L]");
+  addOpcode("JSR {W}",           "BD [W]");
+  addOpcode("JSR [{W}]",         "AD 9F [W]");
 
   addOpcode("LDA #{B}",          "86 [L]");
   addOpcode("LDA <{B}",          "96 [L]");
   addOpcode("LDA {I}",           "A6 [I]");
-  addOpcode("LDA {W}",           "B6 [H] [L]");
-  addOpcode("LDA [{W}]",         "A6 9F [H] [L]");
+  addOpcode("LDA {W}",           "B6 [W]");
+  addOpcode("LDA [{W}]",         "A6 9F [W]");
 
   addOpcode("LDB #{B}",          "C6 [L]");
   addOpcode("LDB <{B}",          "D6 [L]");
   addOpcode("LDB {I}",           "E6 [I]");
-  addOpcode("LDB {W}",           "F6 [H] [L]");
-  addOpcode("LDB [{W}]",         "E6 9F [H] [L]");
+  addOpcode("LDB {W}",           "F6 [W]");
+  addOpcode("LDB [{W}]",         "E6 9F [W]");
 
-  addOpcode("LDD #{W}",          "CC [H] [L]");
+  addOpcode("LDD #{W}",          "CC [W]");
   addOpcode("LDD <{B}",          "DC [L]");
   addOpcode("LDD {I}",           "EC [I]");
-  addOpcode("LDD {W}",           "FC [H] [L]");
-  addOpcode("LDD [{W}]",         "EC 9F [H] [L]");
+  addOpcode("LDD {W}",           "FC [W]");
+  addOpcode("LDD [{W}]",         "EC 9F [W]");
 
-  addOpcode("LDS #{W}",          "10 CE [H] [L]");
+  addOpcode("LDS #{W}",          "10 CE [W]");
   addOpcode("LDS <{B}",          "10 DE [L]");
   addOpcode("LDS {I}",           "10 EE [I]");
-  addOpcode("LDS {W}",           "10 FE [H] [L]");
-  addOpcode("LDS [{W}]",         "10 EE 9F [H] [L]");
+  addOpcode("LDS {W}",           "10 FE [W]");
+  addOpcode("LDS [{W}]",         "10 EE 9F [W]");
 
-  addOpcode("LDU #{W}",          "CE [H] [L]");
+  addOpcode("LDU #{W}",          "CE [W]");
   addOpcode("LDU <{B}",          "DE [L]");
   addOpcode("LDU {I}",           "EE [I]");
-  addOpcode("LDU {W}",           "FE [H] [L]");
-  addOpcode("LDU [{W}]",         "EE 9F [H] [L]");
+  addOpcode("LDU {W}",           "FE [W]");
+  addOpcode("LDU [{W}]",         "EE 9F [W]");
 
-  addOpcode("LDX #{W}",          "8E [H] [L]");
+  addOpcode("LDX #{W}",          "8E [W]");
   addOpcode("LDX <{B}",          "9E [L]");
   addOpcode("LDX {I}",           "AE [I]");
-  addOpcode("LDX {W}",           "BE [H] [L]");
-  addOpcode("LDX [{W}]",         "AE 9F [H] [L]");
+  addOpcode("LDX {W}",           "BE [W]");
+  addOpcode("LDX [{W}]",         "AE 9F [W]");
 
-  addOpcode("LDY #{W}",          "10 8E [H] [L]");
+  addOpcode("LDY #{W}",          "10 8E [W]");
   addOpcode("LDY <{B}",          "10 9E [L]");
   addOpcode("LDY {I}",           "10 AE [I]");
-  addOpcode("LDY {W}",           "10 BE [H] [L]");
-  addOpcode("LDY [{W}]",         "10 AE 9F [H] [L]");
+  addOpcode("LDY {W}",           "10 BE [W]");
+  addOpcode("LDY [{W}]",         "10 AE 9F [W]");
 
   addOpcode("LEAX {I}",          "30 [I]");
   addOpcode("LEAY {I}",          "31 [I]");
@@ -276,8 +276,8 @@ void initOpcodes() {
 
   addOpcode("LSL <{B}",          "08 [L]");
   addOpcode("LSL {I}",           "68 [I]");
-  addOpcode("LSL {W}",           "78 [H] [L]");
-  addOpcode("LSL [{W}]",         "68 9F [H] [L]");
+  addOpcode("LSL {W}",           "78 [W]");
+  addOpcode("LSL [{W}]",         "68 9F [W]");
 
   addOpcode("LSRA",              "44");
 
@@ -285,8 +285,8 @@ void initOpcodes() {
 
   addOpcode("LSR <{B}",          "04 [L]");
   addOpcode("LSR {I}",           "64 [I]");
-  addOpcode("LSR {W}",           "74 [H] [L]");
-  addOpcode("LSR [{W}]",         "64 9F [H] [L]");
+  addOpcode("LSR {W}",           "74 [W]");
+  addOpcode("LSR [{W}]",         "64 9F [W]");
 
   addOpcode("MUL",               "3D");
 
@@ -296,22 +296,22 @@ void initOpcodes() {
 
   addOpcode("NEG <{B}",          "00 [L]");
   addOpcode("NEG {I}",           "60 [I]");
-  addOpcode("NEG {W}",           "70 [H] [L]");
-  addOpcode("NEG [{W}]",         "60 9F [H] [L]");
+  addOpcode("NEG {W}",           "70 [W]");
+  addOpcode("NEG [{W}]",         "60 9F [W]");
 
   addOpcode("NOP",               "12");
 
   addOpcode("ORA #{B}",          "8A [L]");
   addOpcode("ORA <{B}",          "9A [L]");
   addOpcode("ORA {I}",           "AA [I]");
-  addOpcode("ORA {W}",           "BA [H] [L]");
-  addOpcode("ORA [{W}]",         "AA 9F [H] [L]");
+  addOpcode("ORA {W}",           "BA [W]");
+  addOpcode("ORA [{W}]",         "AA 9F [W]");
 
   addOpcode("ORA #{B}",          "CA [L]");
   addOpcode("ORA <{B}",          "DA [L]");
   addOpcode("ORA {I}",           "EA [I]");
-  addOpcode("ORA {W}",           "FA [H] [L]");
-  addOpcode("ORA [{W}]",         "EA 9F [H] [L]");
+  addOpcode("ORA {W}",           "FA [W]");
+  addOpcode("ORA [{W}]",         "EA 9F [W]");
 
   addOpcode("ORCC #{B}",         "1A [L]");
 
@@ -329,8 +329,8 @@ void initOpcodes() {
 
   addOpcode("ROL <{B}",          "09 [L]");
   addOpcode("ROL {I}",           "69 [I]");
-  addOpcode("ROL {W}",           "79 [H] [L]");
-  addOpcode("ROL [{W}]",         "69 9F [H] [L]");
+  addOpcode("ROL {W}",           "79 [W]");
+  addOpcode("ROL [{W}]",         "69 9F [W]");
 
   addOpcode("RORA",              "46");
 
@@ -338,8 +338,8 @@ void initOpcodes() {
 
   addOpcode("ROR <{B}",          "06 [L]");
   addOpcode("ROR {I}",           "66 [I]");
-  addOpcode("ROR {W}",           "76 [H] [L]");
-  addOpcode("ROR [{W}]",         "66 9F [H] [L]");
+  addOpcode("ROR {W}",           "76 [W]");
+  addOpcode("ROR [{W}]",         "66 9F [W]");
 
   addOpcode("RTI",               "3B");
 
@@ -348,69 +348,69 @@ void initOpcodes() {
   addOpcode("SBCA #{B}",         "82 [L]");
   addOpcode("SBCA <{B}",         "92 [L]");
   addOpcode("SBCA {I}",          "A2 [I]");
-  addOpcode("SBCA {W}",          "B2 [H] [L]");
-  addOpcode("SBCA [{W}]",        "A2 9F [H] [L]");
+  addOpcode("SBCA {W}",          "B2 [W]");
+  addOpcode("SBCA [{W}]",        "A2 9F [W]");
 
   addOpcode("SBCB #{B}",         "C2 [L]");
   addOpcode("SBCB <{B}",         "D2 [L]");
   addOpcode("SBCB {I}",          "E2 [I]");
-  addOpcode("SBCB {W}",          "F2 [H] [L]");
-  addOpcode("SBCB [{W}]",        "E2 9F [H] [L]");
+  addOpcode("SBCB {W}",          "F2 [W]");
+  addOpcode("SBCB [{W}]",        "E2 9F [W]");
 
   addOpcode("SEX",               "1D");
 
   addOpcode("STA <{B}",          "97 [L]");
   addOpcode("STA {I}",           "A7 [I]");
-  addOpcode("STA {W}",           "B7 [H] [L]");
-  addOpcode("STA [{W}]",         "A7 9F [H] [L]");
+  addOpcode("STA {W}",           "B7 [W]");
+  addOpcode("STA [{W}]",         "A7 9F [W]");
 
   addOpcode("STB <{B}",          "D7 [L]");
   addOpcode("STB {I}",           "E7 [I]");
-  addOpcode("STB {W}",           "F7 [H] [L]");
-  addOpcode("STB [{W}]",         "E7 9F [H] [L]");
+  addOpcode("STB {W}",           "F7 [W]");
+  addOpcode("STB [{W}]",         "E7 9F [W]");
 
   addOpcode("STD <{B}",          "DD [L]");
   addOpcode("STD {I}",           "ED [I]");
-  addOpcode("STD {W}",           "FD [H] [L]");
-  addOpcode("STD [{W}]",         "ED 9F [H] [L]");
+  addOpcode("STD {W}",           "FD [W]");
+  addOpcode("STD [{W}]",         "ED 9F [W]");
 
   addOpcode("STS <{B}",          "10 DF [L]");
   addOpcode("STS {I}",           "10 EF [I]");
-  addOpcode("STS {W}",           "10 FF [H] [L]");
-  addOpcode("STS [{W}]",         "10 EF 9F [H] [L]");
+  addOpcode("STS {W}",           "10 FF [W]");
+  addOpcode("STS [{W}]",         "10 EF 9F [W]");
 
   addOpcode("STU <{B}",          "DF [L]");
   addOpcode("STU {I}",           "EF [I]");
-  addOpcode("STU {W}",           "FF [H] [L]");
-  addOpcode("STU [{W}]",         "EF 9F [H] [L]");
+  addOpcode("STU {W}",           "FF [W]");
+  addOpcode("STU [{W}]",         "EF 9F [W]");
 
   addOpcode("STX <{B}",          "9F [L]");
   addOpcode("STX {I}",           "AF [I]");
-  addOpcode("STX {W}",           "BF [H] [L]");
-  addOpcode("STX [{W}]",         "AF 9F [H] [L]");
+  addOpcode("STX {W}",           "BF [W]");
+  addOpcode("STX [{W}]",         "AF 9F [W]");
 
   addOpcode("STY <{B}",          "10 9F [L]");
   addOpcode("STY {I}",           "10 AF [I]");
-  addOpcode("STY {W}",           "10 BF [H] [L]");
-  addOpcode("STY [{W}]",         "10 AF 9F [H] [L]");
+  addOpcode("STY {W}",           "10 BF [W]");
+  addOpcode("STY [{W}]",         "10 AF 9F [W]");
 
   addOpcode("SUBA #{B}",         "80 [L]");
   addOpcode("SUBA <{B}",         "90 [L]");
   addOpcode("SUBA {I}",          "A0 [I]");
-  addOpcode("SUBA {W}",          "B0 [H] [L]");
-  addOpcode("SUBA [{W}]",        "A0 9F [H] [L]");
+  addOpcode("SUBA {W}",          "B0 [W]");
+  addOpcode("SUBA [{W}]",        "A0 9F [W]");
 
   addOpcode("SUBB #{B}",         "C0 [L]");
   addOpcode("SUBB <{B}",         "D0 [L]");
   addOpcode("SUBB {I}",          "E0 [I]");
-  addOpcode("SUBB {W}",          "F0 [H] [L]");
-  addOpcode("SUBB [{W}]",        "E0 9F [H] [L]");
+  addOpcode("SUBB {W}",          "F0 [W]");
+  addOpcode("SUBB [{W}]",        "E0 9F [W]");
 
-  addOpcode("SUBD #{W}",         "83 [H] [L]");
+  addOpcode("SUBD #{W}",         "83 [W]");
   addOpcode("SUBD <{B}",         "93 [L]");
   addOpcode("SUBD {I}",          "A3 [I]");
-  addOpcode("SUBD {W}",          "B3 [H] [L]");
-  addOpcode("SUBD [{W}]",        "A3 9F [H] [L]");
+  addOpcode("SUBD {W}",          "B3 [W]");
+  addOpcode("SUBD [{W}]",        "A3 9F [W]");
 
   addOpcode("SWI",               "3F");
 
@@ -428,8 +428,8 @@ void initOpcodes() {
 
   addOpcode("TST <{B}",          "0D [L]");
   addOpcode("TST {I}",           "6D [I]");
-  addOpcode("TST {W}",           "7D [H] [L]");
-  addOpcode("TST [{W}]",         "6D 9F [H] [L]");
+  addOpcode("TST {W}",           "7D [W]");
+  addOpcode("TST [{W}]",         "6D 9F [W]");
 
   addOpcode("BCC {W}",           "24 [D]");
   addOpcode("BCS {W}",           "25 [D]");
@@ -511,18 +511,18 @@ void initIndexes() {
   addIndex(",--X",              "83");
   addIndex(",X",                "84");
   addIndex("{B},X",             "88 [L]");
-  addIndex("{W},X",             "89 [H] [L]");
+  addIndex("{W},X",             "89 [W]");
   addIndex("D,X",               "8B");
   addIndex("{B},PC",            "8C [L]");
-  addIndex("{W},PC",            "8D [H] [L]");
+  addIndex("{W},PC",            "8D [W]");
   addIndex("[,X++]",            "91");
   addIndex("[,--X]",            "93");
   addIndex("[,X]",              "94");
   addIndex("[{B},X]",           "98 [L]");
-  addIndex("[{W},X]",           "99 [H] [L]");
+  addIndex("[{W},X]",           "99 [W]");
   addIndex("[D,X]",             "9B");
   addIndex("[{B},PC]",          "9C [L]");
-  addIndex("[{W},PC]",          "9D [H] [L]");
+  addIndex("[{W},PC]",          "9D [W]");
 
   addIndex("{5},Y",             "2[5]");
   addIndex(",Y++",              "A1");
@@ -531,18 +531,18 @@ void initIndexes() {
   addIndex(",--Y",              "A3");
   addIndex(",Y",                "A4");
   addIndex("{B},Y",             "A8 [L]");
-  addIndex("{W},Y",             "A9 [H] [L]");
+  addIndex("{W},Y",             "A9 [W]");
   addIndex("D,Y",               "AB");
   addIndex("{B},PC",            "8C [L]");
-  addIndex("{W},PC",            "8D [H] [L]");
+  addIndex("{W},PC",            "8D [W]");
   addIndex("[,Y++]",            "B1");
   addIndex("[,--Y]",            "B3");
   addIndex("[,Y]",              "B4");
   addIndex("[{B},Y]",           "B8 [L]");
-  addIndex("[{W},Y]",           "B9 [H] [L]");
+  addIndex("[{W},Y]",           "B9 [W]");
   addIndex("[D,Y]",             "BB");
   addIndex("[{B},PC]",          "9C [L]");
-  addIndex("[{W},PC]",          "9D [H] [L]");
+  addIndex("[{W},PC]",          "9D [W]");
 
   addIndex("{5},U",             "4[5]");
   addIndex(",U++",              "C1");
@@ -551,18 +551,18 @@ void initIndexes() {
   addIndex(",--U",              "C3");
   addIndex(",U",                "C4");
   addIndex("{B},U",             "C8 [L]");
-  addIndex("{W},U",             "C9 [H] [L]");
+  addIndex("{W},U",             "C9 [W]");
   addIndex("D,U",               "CB");
   addIndex("{B},PC",            "8C [L]");
-  addIndex("{W},PC",            "8D [H] [L]");
+  addIndex("{W},PC",            "8D [W]");
   addIndex("[,U++]",            "D1");
   addIndex("[,--U]",            "D3");
   addIndex("[,U]",              "D4");
   addIndex("[{B},U]",           "D8 [L]");
-  addIndex("[{W},U]",           "D9 [H] [L]");
+  addIndex("[{W},U]",           "D9 [W]");
   addIndex("[D,U]",             "DB");
   addIndex("[{B},PC]",          "9C [L]");
-  addIndex("[{W},PC]",          "9D [H] [L]");
+  addIndex("[{W},PC]",          "9D [W]");
 
   addIndex("{5},S",             "6[5]");
   addIndex(",S++",              "E1");
@@ -571,18 +571,18 @@ void initIndexes() {
   addIndex(",--S",              "E3");
   addIndex(",S",                "E4");
   addIndex("{B},S",             "E8 [L]");
-  addIndex("{W},S",             "E9 [H] [L]");
+  addIndex("{W},S",             "E9 [W]");
   addIndex("D,S",               "EB");
   addIndex("{B},PC",            "8C [L]");
-  addIndex("{W},PC",            "8D [H] [L]");
+  addIndex("{W},PC",            "8D [W]");
   addIndex("[,S++]",            "F1");
   addIndex("[,--S]",            "F3");
   addIndex("[,S]",              "F4");
   addIndex("[{B},S]",           "F8 [L]");
-  addIndex("[{W},S]",           "F9 [H] [L]");
+  addIndex("[{W},S]",           "F9 [W]");
   addIndex("[D,S]",             "FB");
   addIndex("[{B},PC]",          "9C [L]");
-  addIndex("[{W},PC]",          "9D [H] [L]");
+  addIndex("[{W},PC]",          "9D [W]");
   }
 
 char* trim(char* buffer) {
@@ -1214,6 +1214,14 @@ void translateInstruction(char* trans) {
     else if (strncasecmp(trans, "[H]", 3) == 0) {
       if (valid) output(b);
       output(arg >> 8);
+      valid = 0;
+      b = 0;
+      trans += 3;
+      }
+    else if (strncasecmp(trans, "[W]", 3) == 0) {
+      if (valid) output(b);
+      output(arg >> 8);
+      output(arg & 0xff);
       valid = 0;
       b = 0;
       trans += 3;
