@@ -1137,8 +1137,6 @@ int match(char* pattern, char* input) {
       else return 0;
       while (*input == ' ' || *input == '\t') input++;
       if (*input != 0) return 0;
-      if ((arg >> 4) == (arg & 0x0f)) return 0;
-      if (((arg & 0x80) >> 4) != (arg & 0x08)) return 0;
       return -1;
       }
     else if (strncasecmp(pattern,"{RL}",4) == 0) {
