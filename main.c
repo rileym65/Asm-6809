@@ -34,10 +34,18 @@ void addOpcode(char* op, char* trans) {
   strcpy(opcodes[numOpcodes], op);
   strcpy(translations[numOpcodes], trans);
   numOpcodes++;
-  if (numOpcodes > 511) {
+  if (numOpcodes > 767) {
     printf("Opcode table full\n");
     exit(1);
     }
+  }
+
+char* get32(char* line) {
+  evalErrors = 0;
+  args[argCount++] = 0x1234;
+  args[argCount++] = 0x5678;
+  while (*line != 0) line++;
+  return line;
   }
 
 void initOpcodes() {
@@ -473,6 +481,305 @@ void initOpcodes() {
   addOpcode("LBSR {W}",          "10 8D [DW]");
   addOpcode("LBVC {W}",          "10 28 [DW]");
   addOpcode("LBVS {W}",          "10 29 [DW]");
+  }
+
+void init6309Opcodes() {
+  if (loaded6309 != 0) return;
+  loaded6309 = -1;
+  addOpcode("ADCD #{W}",         "10 89 [W]");
+  addOpcode("ADCD <{B}",         "10 99 [L]");
+  addOpcode("ADCD {I}",          "10 A9 [I]");
+  addOpcode("ADCD {W}",          "10 B9 [W]");
+  addOpcode("ADCD [{W}]",        "10 A9 9F [W]");
+
+  addOpcode("ADCR {RP}",         "10 31 [L]");
+
+  addOpcode("ADDE #{B}",         "11 8B [L]");
+  addOpcode("ADDE <{B}",         "11 9B [L]");
+  addOpcode("ADDE {I}",          "11 AB [I]");
+  addOpcode("ADDE {W}",          "11 BB [W]");
+  addOpcode("ADDE [{W}]",        "11 AB 9F [W]");
+
+  addOpcode("ADDF #{B}",         "11 CB [L]");
+  addOpcode("ADDF <{B}",         "11 DB [L]");
+  addOpcode("ADDF {I}",          "11 EB [I]");
+  addOpcode("ADDF {W}",          "11 FB [W]");
+  addOpcode("ADDF [{W}]",        "11 EB 9F [W]");
+
+  addOpcode("ADDW #{W}",         "10 8B [W]");
+  addOpcode("ADDW <{B}",         "10 9B [L]");
+  addOpcode("ADDW {I}",          "10 AB [I]");
+  addOpcode("ADDW {W}",          "10 BB [W]");
+  addOpcode("ADDW [{W}]",        "10 AB 9F [W]");
+
+  addOpcode("AIM #{B},<{B}",     "02 [L] + [L]");
+  addOpcode("AIM #{B},{I}",      "62 [L] + [I]");
+  addOpcode("AIM #{B},{W}",      "72 [L] + [W]");
+
+  addOpcode("ADDR {RP}",         "10 30 [L]");
+
+  addOpcode("ANDD #{W}",         "10 84 [W]");
+  addOpcode("ANDD <{B}",         "10 94 [L]");
+  addOpcode("ANDD {I}",          "10 A4 [I]");
+  addOpcode("ANDD {W}",          "10 B4 [W]");
+  addOpcode("ANDD [{W}]",        "10 A4 9F [W]");
+
+  addOpcode("ANDR {RP}",         "10 34 [L]");
+
+  addOpcode("ASLD",              "10 48");
+
+  addOpcode("ASRD",              "10 47");
+
+  addOpcode("BAND A,{B},{B},{B}", "11 30 40[BT] ++ [L]");
+  addOpcode("BAND B,{B},{B},{B}", "11 30 80[BT] ++ [L]");
+  addOpcode("BAND CC,{B},{B},{B}","11 30 00[BT] ++ [L]");
+
+  addOpcode("BEOR A,{B},{B},{B}", "11 34 40[BT] ++ [L]");
+  addOpcode("BEOR B,{B},{B},{B}", "11 34 80[BT] ++ [L]");
+  addOpcode("BEOR CC,{B},{B},{B}","11 34 00[BT] ++ [L]");
+
+  addOpcode("BIAND A,{B},{B},{B}", "11 31 40[BT] ++ [L]");
+  addOpcode("BIAND B,{B},{B},{B}", "11 31 80[BT] ++ [L]");
+  addOpcode("BIAND CC,{B},{B},{B}","11 31 00[BT] ++ [L]");
+
+  addOpcode("BIEOR A,{B},{B},{B}", "11 35 40[BT] ++ [L]");
+  addOpcode("BIEOR B,{B},{B},{B}", "11 35 80[BT] ++ [L]");
+  addOpcode("BIEOR CC,{B},{B},{B}","11 35 00[BT] ++ [L]");
+
+  addOpcode("BIOR A,{B},{B},{B}", "11 33 40[BT] ++ [L]");
+  addOpcode("BIOR B,{B},{B},{B}", "11 33 80[BT] ++ [L]");
+  addOpcode("BIOR CC,{B},{B},{B}","11 33 00[BT] ++ [L]");
+
+  addOpcode("BOR A,{B},{B},{B}", "11 32 40[BT] ++ [L]");
+  addOpcode("BOR B,{B},{B},{B}", "11 32 80[BT] ++ [L]");
+  addOpcode("BOR CC,{B},{B},{B}","11 32 00[BT] ++ [L]");
+
+  addOpcode("LDBT A,{B},{B},{B}", "11 36 40[BT] ++ [L]");
+  addOpcode("LDBT B,{B},{B},{B}", "11 36 80[BT] ++ [L]");
+  addOpcode("LDBT CC,{B},{B},{B}","11 36 00[BT] ++ [L]");
+
+  addOpcode("STBT A,{B},{B},{B}", "11 37 40[BT] ++ [L]");
+  addOpcode("STBT B,{B},{B},{B}", "11 37 80[BT] ++ [L]");
+  addOpcode("STBT CC,{B},{B},{B}","11 37 00[BT] ++ [L]");
+ 
+  addOpcode("BITD #{W}",         "10 85 [W]");
+  addOpcode("BITD <{B}",         "10 95 [L]");
+  addOpcode("BITD {I}",          "10 A5 [I]");
+  addOpcode("BITD {W}",          "10 B5 [W]");
+  addOpcode("BITD [{W}]",        "10 A5 9F [W]");
+
+  addOpcode("BITMD #{B}",        "11 3C [L]");
+
+  addOpcode("CLRD",              "10 4F");
+
+  addOpcode("CLRE",              "11 4F");
+
+  addOpcode("CLRF",              "11 5F");
+
+  addOpcode("CLRW",              "10 5F");
+
+  addOpcode("CMPE #{B}",         "11 81 [L]");
+  addOpcode("CMPE <{B}",         "11 91 [L]");
+  addOpcode("CMPE {I}",          "11 A1 [I]");
+  addOpcode("CMPE {W}",          "11 B1 [W]");
+  addOpcode("CMPE [{W}]",        "11 A1 9F [W]");
+
+  addOpcode("CMPF #{B}",         "11 C1 [L]");
+  addOpcode("CMPF <{B}",         "11 D1 [L]");
+  addOpcode("CMPF {I}",          "11 E1 [I]");
+  addOpcode("CMPF {W}",          "11 F1 [W]");
+  addOpcode("CMPF [{W}]",        "11 E1 9F [W]");
+
+  addOpcode("CMPW #{W}",         "10 81 [W]");
+  addOpcode("CMPW <{B}",         "10 91 [L]");
+  addOpcode("CMPW {I}",          "10 A1 [I]");
+  addOpcode("CMPW {W}",          "10 B1 [W]");
+  addOpcode("CMPW [{W}]",        "10 A1 9F [W]");
+
+  addOpcode("CMPR {RP}",         "10 37 [L]");
+
+  addOpcode("COMD",              "10 43");
+
+  addOpcode("COME",              "11 43");
+
+  addOpcode("COMF",              "11 53");
+
+  addOpcode("COMW",              "10 53");
+
+  addOpcode("DECD",              "10 4A");
+
+  addOpcode("DECE",              "11 4A");
+
+  addOpcode("DECF",              "11 5A");
+
+  addOpcode("DECW",              "10 5A");
+
+  addOpcode("DIVD #{B}",         "11 8D [L]");
+  addOpcode("DIVD <{B}",         "11 9D [L]");
+  addOpcode("DIVD {I}",          "11 AD [I]");
+  addOpcode("DIVD {W}",          "11 BD [W]");
+  addOpcode("DIVD [{W}]",        "11 AD 9F [W]");
+
+  addOpcode("DIVQ #{W}",         "11 8E [W]");
+  addOpcode("DIVQ <{B}",         "11 9E [L]");
+  addOpcode("DIVQ {I}",          "11 AE [I]");
+  addOpcode("DIVQ {W}",          "11 BE [W]");
+  addOpcode("DIVQ [{W}]",        "11 AE 9F [W]");
+
+  addOpcode("EIM #{B},<{B}",     "05 [L] + [L]");
+  addOpcode("EIM #{B},{I}",      "65 [L] + [I]");
+  addOpcode("EIM #{B},{W}",      "75 [L] + [W]");
+
+  addOpcode("EORD #{W}",         "10 88 [W]");
+  addOpcode("EORD <{B}",         "10 98 [L]");
+  addOpcode("EORD {I}",          "10 A8 [I]");
+  addOpcode("EORD {W}",          "10 B8 [W]");
+  addOpcode("EORD [{W}]",        "10 A8 9F [W]");
+
+  addOpcode("EORR {RP}",         "10 36 [L]");
+
+  addOpcode("INCD",              "10 4C");
+
+  addOpcode("INCE",              "11 4C");
+
+  addOpcode("INCF",              "11 5C");
+
+  addOpcode("INCW",              "10 5C");
+
+  addOpcode("LDE #{B}",          "11 86 [L]");
+  addOpcode("LDE <{B}",          "11 96 [L]");
+  addOpcode("LDE {I}",           "11 A6 [I]");
+  addOpcode("LDE {W}",           "11 B6 [W]");
+  addOpcode("LDE [{W}]",         "11 A6 9F [W]");
+
+  addOpcode("LDF #{B}",          "11 C6 [L]");
+  addOpcode("LDF <{B}",          "11 D6 [L]");
+  addOpcode("LDF {I}",           "11 E6 [I]");
+  addOpcode("LDF {W}",           "11 F6 [W]");
+  addOpcode("LDF [{W}]",         "11 E6 9F [W]");
+
+  addOpcode("LDW #{W}",          "10 86 [W]");
+  addOpcode("LDW <{B}",          "10 96 [L]");
+  addOpcode("LDW {I}",           "10 A6 [I]");
+  addOpcode("LDW {W}",           "10 B6 [W]");
+  addOpcode("LDW [{W}]",         "10 A6 9F [W]");
+
+  addOpcode("LDMD #{B}",         "11 3D [L]");
+
+  addOpcode("LDQ #{Q}",          "CD [Q]");
+  addOpcode("LDQ <{B}",          "10 DC [L]");
+  addOpcode("LDQ {I}",           "10 EC [I]");
+  addOpcode("LDQ {W}",           "10 FC [W]");
+  addOpcode("LDQ [{W}]",         "10 EC 9F [W]");
+
+  addOpcode("LSLD",              "10 48");
+
+  addOpcode("LSRD",              "10 44");
+
+  addOpcode("LSRW",              "10 54");
+
+  addOpcode("MULD #{W}",         "11 8F [W]");
+  addOpcode("MULD <{B}",         "11 9F [L]");
+  addOpcode("MULD {I}",          "11 AF [I]");
+  addOpcode("MULD {W}",          "11 BF [W]");
+  addOpcode("MULD [{W}]",        "11 AF 9F [W]");
+
+  addOpcode("NEGD",              "10 40");
+
+  addOpcode("OIM #{B},<{B}",     "01 [L] + [L]");
+  addOpcode("OIM #{B},{I}",      "61 [L] + [I]");
+  addOpcode("OIM #{B},{W}",      "71 [L] + [W]");
+
+  addOpcode("ORD #{W}",          "10 8A [W]");
+  addOpcode("ORD <{B}",          "10 9A [L]");
+  addOpcode("ORD {I}",           "10 AA [I]");
+  addOpcode("ORD {W}",           "10 BA [W]");
+  addOpcode("ORD [{W}]",         "10 AA 9F [W]");
+
+  addOpcode("ORR {RP}",          "10 35 [L]");
+
+  addOpcode("PSHSW",             "10 38");
+
+  addOpcode("PSHUW",             "10 3A");
+
+  addOpcode("PULSW",             "10 39");
+
+  addOpcode("PULUW",             "10 3B");
+
+  addOpcode("ROLD",              "10 49");
+
+  addOpcode("ROLW",              "10 59");
+
+  addOpcode("RORD",              "10 46");
+
+  addOpcode("RORW",              "10 56");
+
+  addOpcode("SBCD #{W}",         "10 82 [W]");
+  addOpcode("SBCD <{B}",         "10 92 [L]");
+  addOpcode("SBCD {I}",          "10 A2 [I]");
+  addOpcode("SBCD {W}",          "10 B2 [W]");
+  addOpcode("SBCD [{W}]",        "10 A2 9F [W]");
+
+  addOpcode("SBCR {RP}",         "10 33 [L]");
+
+  addOpcode("SEXW",              "14");
+
+  addOpcode("STE <{B}",          "11 97 [L]");
+  addOpcode("STE {I}",           "11 A7 [I]");
+  addOpcode("STE {W}",           "11 B7 [W]");
+  addOpcode("STE [{W}]",         "11 A7 9F [W]");
+
+  addOpcode("STF <{B}",          "11 D7 [L]");
+  addOpcode("STF {I}",           "11 E7 [I]");
+  addOpcode("STF {W}",           "11 F7 [W]");
+  addOpcode("STF [{W}]",         "11 E7 9F [W]");
+
+  addOpcode("STW <{B}",          "10 97 [L]");
+  addOpcode("STW {I}",           "10 A7 [I]");
+  addOpcode("STW {W}",           "10 B7 [W]");
+  addOpcode("STW [{W}]",         "10 A7 9F [W]");
+
+  addOpcode("STQ <{B}",          "10 DD [L]");
+  addOpcode("STQ {I}",           "10 ED [I]");
+  addOpcode("STQ {W}",           "10 FD [W]");
+  addOpcode("STQ [{W}]",         "10 ED 9F [W]");
+
+  addOpcode("SUBE #{B}",         "11 80 [L]");
+  addOpcode("SUBE <{B}",         "11 90 [L]");
+  addOpcode("SUBE {I}",          "11 A0 [I]");
+  addOpcode("SUBE {W}",          "11 B0 [W]");
+  addOpcode("SUBE [{W}]",        "11 A0 9F [W]");
+
+  addOpcode("SUBF #{B}",         "11 C0 [L]");
+  addOpcode("SUBF <{B}",         "11 D0 [L]");
+  addOpcode("SUBF {I}",          "11 E0 [I]");
+  addOpcode("SUBF {W}",          "11 F0 [W]");
+  addOpcode("SUBF [{W}]",        "11 E0 9F [W]");
+
+  addOpcode("SUBW #{W}",         "10 80 [W]");
+  addOpcode("SUBW <{B}",         "10 90 [L]");
+  addOpcode("SUBW {I}",          "10 A0 [I]");
+  addOpcode("SUBW {W}",          "10 B0 [W]");
+  addOpcode("SUBW [{W}]",        "10 A0 9F [W]");
+
+  addOpcode("SUBR {RP}",         "10 32 [L]");
+
+  addOpcode("TIM #{B},<{B}",     "0B [L] + [L]");
+  addOpcode("TIM #{B},{I}",      "6B [L] + [I]");
+  addOpcode("TIM #{B},{W}",      "7B [L] + [W]");
+
+  addOpcode("TSTD",              "10 4D");
+
+  addOpcode("TSTE",              "11 4D");
+
+  addOpcode("TSTF",              "11 5D");
+
+  addOpcode("TSTW",              "10 5D");
+
+  addOpcode("TFM {IR}+,{IR}+",   "11 38 [TF]");
+  addOpcode("TFM {IR}-,{IR}-",   "11 39 [TF]");
+  addOpcode("TFM {IR}+,{IR}",    "11 3A [TF]");
+  addOpcode("TFM {IR},{IR}+",    "11 3B [TF]");
   }
 
 
@@ -1009,19 +1316,24 @@ int match(char* pattern, char* input) {
   while (*pattern != 0) {
     while (*pattern == ' ' || *pattern == '\t') pattern++;
     while (*input == ' ' || *input == '\t') input++;
-// printf("<<%s>> == <<%s>>\n",input, pattern);
     if (strncasecmp(pattern,"{B}",3) == 0) {
       temp = evaluate(input, &value);
       if (evalErrors != 0) return 0;
       if (value >= 256) return 0;
-      arg = value;
+      args[argCount++] = value;
       input = temp;
       pattern += 3;
       }
     else if (strncasecmp(pattern,"{W}",3) == 0) {
       temp = evaluate(input, &value);
       if (evalErrors != 0) return 0;
-      arg = value;
+      args[argCount++] = value;
+      input = temp;
+      pattern += 3;
+      }
+    else if (strncasecmp(pattern, "{Q}", 3) == 0) {
+      temp = get32(input);
+      if (evalErrors != 0) return 0;
       input = temp;
       pattern += 3;
       }
@@ -1033,60 +1345,89 @@ int match(char* pattern, char* input) {
           return -1;
           }
       if (indexNumber == 0xffff) return 0;
-// printf("[I] pattern matched\n");
       while (*pattern != 0) pattern++;
       while (*input != 0) input++;
       }
     else if (strncasecmp(pattern,"{5}",3) == 0) {
       temp = evaluate(input, &value);
       if (evalErrors != 0) return 0;
+      if (value == 0x10) return 0;
       if ((value & 0xffe0) != 0xffe0 &&
           (value & 0xffe0) != 0x0000) return 0;
-      arg = value;
+      args[argCount++] = value;
       input = temp;
       pattern += 3;
       }
+    else if (strncasecmp(pattern,"{IR}",4) == 0) {
+      while (*input == ' ' || *input == '\t') input++;
+      if (*input == 'x' || *input == 'X') {
+        args[argCount++] = 0x01;
+        input++;
+        pattern += 4;
+        }
+      else if (*input == 'y' || *input == 'Y') {
+        args[argCount++] = 0x02;
+        input++;
+        pattern += 4;
+        }
+      else if (*input == 'u' || *input == 'U') {
+        args[argCount++] = 0x03;
+        input++;
+        pattern += 4;
+        }
+      else if (*input == 's' || *input == 'S') {
+        args[argCount++] = 0x04;
+        input++;
+        pattern += 4;
+        }
+      else if (*input == 'd' || *input == 'D') {
+        args[argCount++] = 0x00;
+        input++;
+        pattern += 4;
+        }
+      else return 0;
+      }
     else if (strncasecmp(pattern,"{RP}",4) == 0) {
-      arg = 0;
+      args[argCount++] = 0;
       while (*input == ' ' || *input == '\t') input++;
       if (*input == 'a' || *input == 'A') {
-        arg |= 0x80;
+        args[argCount-1] |= 0x80;
         input++;
         }
       else if (*input == 'b' || *input == 'B') {
-        arg |= 0x90;
+        args[argCount-1] |= 0x90;
         input++;
         }
       else if (*input == 'x' || *input == 'X') {
-        arg |= 0x10;
+        args[argCount-1] |= 0x10;
         input++;
         }
       else if (*input == 'y' || *input == 'Y') {
-        arg |= 0x20;
+        args[argCount-1] |= 0x20;
         input++;
         }
       else if (*input == 'u' || *input == 'U') {
-        arg |= 0x30;
+        args[argCount-1] |= 0x30;
         input++;
         }
       else if (*input == 's' || *input == 'S') {
-        arg |= 0x40;
+        args[argCount-1] |= 0x40;
         input++;
         }
       else if (*input == 'd' || *input == 'D') {
-        arg |= 0x00;
+        args[argCount-1] |= 0x00;
         input++;
         }
       else if (strncasecmp(input, "cc",2) == 0) {
-        arg |= 0xa0;
+        args[argCount-1] |= 0xa0;
         input += 2;
         }
       else if (strncasecmp(input, "dp",2) == 0) {
-        arg |= 0xb0;
+        args[argCount-1] |= 0xb0;
         input += 2;
         }
       else if (strncasecmp(input, "pc",2) == 0) {
-        arg |= 0x50;
+        args[argCount-1] |= 0x50;
         input += 2;
         }
       else return 0;
@@ -1095,43 +1436,43 @@ int match(char* pattern, char* input) {
       input++;
       while (*input == ' ' || *input == '\t') input++;
       if (*input == 'a' || *input == 'A') {
-        arg |= 0x08;
+        args[argCount-1] |= 0x08;
         input++;
         }
       else if (*input == 'b' || *input == 'B') {
-        arg |= 0x09;
+        args[argCount-1] |= 0x09;
         input++;
         }
       else if (*input == 'x' || *input == 'X') {
-        arg |= 0x01;
+        args[argCount-1] |= 0x01;
         input++;
         }
       else if (*input == 'y' || *input == 'Y') {
-        arg |= 0x02;
+        args[argCount-1] |= 0x02;
         input++;
         }
       else if (*input == 'u' || *input == 'U') {
-        arg |= 0x03;
+        args[argCount-1] |= 0x03;
         input++;
         }
       else if (*input == 's' || *input == 'S') {
-        arg |= 0x04;
+        args[argCount-1] |= 0x04;
         input++;
         }
       else if (strncasecmp(input, "dp",2) == 0) {
-        arg |= 0x0b;
+        args[argCount-1] |= 0x0b;
         input += 2;
         }
       else if (*input == 'd' || *input == 'D') {
-        arg |= 0x00;
+        args[argCount-1] |= 0x00;
         input++;
         }
       else if (strncasecmp(input, "cc",2) == 0) {
-        arg |= 0x0a;
+        args[argCount-1] |= 0x0a;
         input += 2;
         }
       else if (strncasecmp(input, "pc",2) == 0) {
-        arg |= 0x05;
+        args[argCount-1] |= 0x05;
         input += 2;
         }
       else return 0;
@@ -1140,43 +1481,43 @@ int match(char* pattern, char* input) {
       return -1;
       }
     else if (strncasecmp(pattern,"{RL}",4) == 0) {
-      arg = 0;
+      args[argCount++] = 0;
       while (*input != 0) {
         while (*input == ' ' || *input == '\t') input++;
         if (*input == 'a' || *input == 'A') {
-          arg |= 0x02;
+          args[argCount-1] |= 0x02;
           input++;
           }
         else if (*input == 'b' || *input == 'B') {
-          arg |= 0x04;
+          args[argCount-1] |= 0x04;
           input++;
           }
         else if (*input == 'x' || *input == 'X') {
-          arg |= 0x10;
+          args[argCount-1] |= 0x10;
           input++;
           }
         else if (*input == 'y' || *input == 'Y') {
-          arg |= 0x20;
+          args[argCount-1] |= 0x20;
           input++;
           }
         else if (*input == 's' || *input == 'S') {
-          arg |= 0x40;
+          args[argCount-1] |= 0x40;
           input++;
           }
         else if (*input == 'u' || *input == 'U') {
-          arg |= 0x40;
+          args[argCount-1] |= 0x40;
           input++;
           }
         else if (strncasecmp(input, "cc",2) == 0) {
-          arg |= 0x01;
+          args[argCount-1] |= 0x01;
           input+=2;
           }
         else if (strncasecmp(input, "dp",2) == 0) {
-          arg |= 0x08;
+          args[argCount-1] |= 0x08;
           input+=2;
           }
         else if (strncasecmp(input, "pc",2) == 0) {
-          arg |= 0x80;
+          args[argCount-1] |= 0x80;
           input+=2;
           }
         else return 0;
@@ -1192,6 +1533,7 @@ int match(char* pattern, char* input) {
       if (upcase(*pattern) != upcase(*input)) return 0;
       pattern++;
       input++;
+      if (*pattern == ' ' && *input != ' ' && *input != '\t') return 0;
       }
     }
 // printf("Possible match\n");
@@ -1205,6 +1547,7 @@ int lookupInstruction(char* input) {
   int i;
   usedExternal = -1;
   for (i=0; i<numOpcodes; i++) {
+    argCount = 0;
     if (match(opcodes[i], input) != 0) return i;
     }
   return -1;
@@ -1222,7 +1565,7 @@ void translateInstruction(char* trans) {
       if (usedExternal >= 0 && pass == 2) {
         if (pass == 2) fprintf(outFile,"\\%s %04x\n",labelNames[externals[usedExternal]],address);
         }
-      output(arg & 0xff);
+      output(args[argNumber] & 0xff);
       valid = 0;
       b = 0;
       trans += 3;
@@ -1230,12 +1573,32 @@ void translateInstruction(char* trans) {
     else if (strncasecmp(trans, "[H]", 3) == 0) {
       if (valid) output(b);
       if (usedExternal >= 0 && pass == 2) {
-        if (pass == 2) fprintf(outFile,"/%s %04x %02x\n",labelNames[externals[usedExternal]],address,arg & 0xff);
+        if (pass == 2) fprintf(outFile,"/%s %04x %02x\n",labelNames[externals[usedExternal]],address,args[argNumber] & 0xff);
         }
-      output(arg >> 8);
+      output(args[argNumber] >> 8);
       valid = 0;
       b = 0;
       trans += 3;
+      }
+    else if (strncasecmp(trans, "[Q]", 3) == 0) {
+      if (valid) output(b);
+      output(args[argNumber] >> 8);
+      output(args[argNumber] & 0xff);
+      output(args[argNumber+1] >> 8);
+      output(args[argNumber+1] & 0xff);
+      valid = 0;
+      trans += 3;
+      }
+    else if (strncasecmp(trans, "[BT]", 4) == 0) {
+      b |= ((args[argNumber] & 0x7) << 3) | (args[argNumber+1] & 0x7);
+      valid = -1;
+      trans += 4;
+      }
+    else if (strncasecmp(trans, "[TF]", 4) == 0) {
+      if (valid) output(b);
+      b |= (args[argNumber] << 4) | args[argNumber+1];
+      valid = -1;
+      trans += 4;
       }
     else if (strncasecmp(trans, "[DW]", 4) == 0) {
       if (valid) output(b);
@@ -1243,7 +1606,7 @@ void translateInstruction(char* trans) {
         fprintf(outFile,"?%s %04x\n",labelNames[externals[usedExternal]],address);
         printf("???WARNING: Using relative addresses as EXTRN will likely not produce the expected result\n");
         }
-      a = arg - (address+2);
+      a = args[argNumber] - (address+2);
       output(a >> 8);
       output(a & 0xff);
       valid = 0;
@@ -1256,7 +1619,7 @@ void translateInstruction(char* trans) {
         fprintf(outFile,"\\%s %04x\n",labelNames[externals[usedExternal]],address);
         printf("???WARNING: Using relative addresses as EXTRN will likely not produce the expected result\n");
         }
-      a = arg - (address+1);
+      a = args[argNumber] - (address+1);
       output(a & 0xff);
       valid = 0;
       b = 0;
@@ -1273,8 +1636,8 @@ void translateInstruction(char* trans) {
         fixupLowOffset[numFixups] = 0;
         numFixups++;
         }
-      output(arg >> 8);
-      output(arg & 0xff);
+      output(args[argNumber] >> 8);
+      output(args[argNumber] & 0xff);
       valid = 0;
       b = 0;
       trans += 3;
@@ -1288,7 +1651,7 @@ void translateInstruction(char* trans) {
       }
     else if (strncasecmp(trans, "[5]", 3) == 0) {
       if (valid) b <<= 4;
-      b |= (arg & 0x1f);
+      b |= (args[argNumber] & 0x1f);
       output(b);
       valid = 0;
       b = 0;
@@ -1307,6 +1670,13 @@ void translateInstruction(char* trans) {
     else if (*trans >= 'A' && *trans <= 'F') {
       b = (b << 4) | (*trans - 55);
       valid = -1;
+      trans++;
+      }
+    else if (*trans == '+') {
+      if (valid) output(b);
+      b = 0;
+      valid = 0;
+      argNumber++;
       trans++;
       }
     else if (*trans == ' ') {
@@ -1499,6 +1869,10 @@ int assemblyPass(char* sourceName) {
   inProc = 0;
   while (nextLine(line)) {
     strcpy(sourceLine, line);
+    if (strncmp(line,".6309",5) == 0) {
+      use6309 = -1;
+      init6309Opcodes();
+      }
     if (strncmp(line,".list",5) == 0) showList = -1;
     if (strncmp(line,".sym",4) == 0) showSymbols = -1;
     if (strncmp(line,".link ",6) == 0) {
@@ -1712,6 +2086,7 @@ int assemblyPass(char* sourceName) {
           if (o >= 0) {
 // printf("-->%s\n",opcodes[o]);
 // if (indexNumber != 0xffff) printf("   %s\n",indexes[indexNumber]);
+            argNumber = 0;
             translateInstruction(translations[o]);
             }
           else {
@@ -1870,6 +2245,8 @@ int main(int argc, char **argv) {
   showSymbols = 0;
   createListFile = 0;
   numSourceFiles = 0;
+  use6309 = 0;
+  loaded6309 = 0;
   tv = time(NULL);
   localtime_r(&tv, &dt);
   buildMonth = dt.tm_mon + 1;
@@ -1882,6 +2259,7 @@ int main(int argc, char **argv) {
     if (strcmp(argv[i],"-l") == 0) showList = -1;
     else if (strcmp(argv[i],"-L") == 0) createListFile = -1;
     else if (strcmp(argv[i],"-s") == 0) showSymbols = -1;
+    else if (strcmp(argv[i],"-6309") == 0) use6309 = -1;
     else {
       numSourceFiles++;
       if (numSourceFiles == 1)
@@ -1896,6 +2274,7 @@ int main(int argc, char **argv) {
     printf("No source file specified\n");
     exit(1);
     }
+  if (use6309) init6309Opcodes();
   for (i=0; i<numSourceFiles; i++)
     assembleFile(sourceNames[i]);
   return 0;

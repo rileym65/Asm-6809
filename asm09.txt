@@ -1,5 +1,6 @@
 Command Line Switches:
 ======================
+  -6309         - Enable 6309 opcodes
   -l            - Show assembly list
   -L            - Create .lst file
   -s            - Show symbols
@@ -16,6 +17,7 @@ Preprocessor:
 
 Assembler directives:
 =====================
+.6309        - Enable 6309 opcodes
 .align word  - Align address on word boundary (2 bytes)
 .align dword - Align address on double word boundary (4 bytes)
 .align qword - Align address on quad word boundary (8 bytes)
