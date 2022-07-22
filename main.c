@@ -1398,6 +1398,14 @@ int match(char* pattern, char* input) {
         args[argCount-1] |= 0x90;
         input++;
         }
+      else if (use6309 && (*input == 'e' || *input == 'E')) {
+        args[argCount-1] |= 0xe0;
+        input++;
+        }
+      else if (use6309 && (*input == 'f' || *input == 'F')) {
+        args[argCount-1] |= 0xf0;
+        input++;
+        }
       else if (*input == 'x' || *input == 'X') {
         args[argCount-1] |= 0x10;
         input++;
@@ -1416,6 +1424,14 @@ int match(char* pattern, char* input) {
         }
       else if (*input == 'd' || *input == 'D') {
         args[argCount-1] |= 0x00;
+        input++;
+        }
+      else if (use6309 && (*input == 'w' || *input == 'W')) {
+        args[argCount-1] |= 0x60;
+        input++;
+        }
+      else if (use6309 && (*input == 'v' || *input == 'V')) {
+        args[argCount-1] |= 0x70;
         input++;
         }
       else if (strncasecmp(input, "cc",2) == 0) {
@@ -1443,6 +1459,14 @@ int match(char* pattern, char* input) {
         args[argCount-1] |= 0x09;
         input++;
         }
+      else if (use6309 && (*input == 'e' || *input == 'E')) {
+        args[argCount-1] |= 0x0e;
+        input++;
+        }
+      else if (use6309 && (*input == 'f' || *input == 'F')) {
+        args[argCount-1] |= 0x0f;
+        input++;
+        }
       else if (*input == 'x' || *input == 'X') {
         args[argCount-1] |= 0x01;
         input++;
@@ -1465,6 +1489,14 @@ int match(char* pattern, char* input) {
         }
       else if (*input == 'd' || *input == 'D') {
         args[argCount-1] |= 0x00;
+        input++;
+        }
+      else if (use6309 && (*input == 'w' || *input == 'W')) {
+        args[argCount-1] |= 0x06;
+        input++;
+        }
+      else if (use6309 && (*input == 'v' || *input == 'V')) {
+        args[argCount-1] |= 0x07;
         input++;
         }
       else if (strncasecmp(input, "cc",2) == 0) {
